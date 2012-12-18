@@ -1,12 +1,13 @@
-var theApp = angular.module("Client", ['ngCookies']).
-  config(function($routeProvider, $locationProvider) {
+var theApp = angular.module("<%= app_name %>Client", ['ngCookies']).
+  config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   //$locationProvider.hashPrefix('');
   $locationProvider.html5Mode(true);
   $routeProvider.
       when('/', {controller: 'WelcomeCtrl',
          templateUrl:'<%= asset_path("welcome/index.html") %>'}).
     otherwise({redirectTo:'/'});
-});
+}]);
+
 
 function CsrfCtrl($cookieStore){
   $cookieStore.put("XSRF-TOKEN",
@@ -14,3 +15,4 @@ function CsrfCtrl($cookieStore){
                    attr('data-csrf'));
 }
 
+CsrfCtrl.$inject = ['$cookieStore'];

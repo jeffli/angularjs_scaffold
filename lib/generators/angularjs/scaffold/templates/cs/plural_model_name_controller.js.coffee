@@ -10,10 +10,14 @@ root = global ? window
       @<%= @resource_name%>.destroy ->
         $scope.<%= @resource_name%>s = _.without($scope.<%= @resource_name%>s, original)
 
+<%= @controller%>IndexCtrl.$inject = ['$scope', <%= @model_name%>];
+
 <%= @controller%>CreateCtrl = ($scope, $location, <%= @model_name%>) ->
   $scope.save = ->
     <%= @model_name%>.save $scope.<%= @resource_name%>, (<%= @resource_name%>) ->
       $location.path "/<%= @resource_name%>s/#{<%= @resource_name%>.id}/edit"
+
+<%= @controller%>CreateCtrl.$inject = ['$scope', '$location', '<%= @model_name%>'];
 
 <%= @controller%>ShowCtrl = ($scope, $location, $routeParams, <%= @model_name%>) ->
   <%= @model_name%>.get
@@ -21,6 +25,8 @@ root = global ? window
   , (<%= @resource_name%>) ->
     self.original = <%= @resource_name%>
     $scope.<%= @resource_name%> = new <%= @model_name%>(self.original)
+
+<%= @controller%>ShowCtrl.$inject = ['$scope', '$location', '$routeParams', '<%= @model_name%>'];
 
 <%= @controller%>EditCtrl = ($scope, $location, $routeParams, <%= @model_name%>) ->
   self = this
@@ -43,6 +49,8 @@ root = global ? window
   $scope.save = ->
     <%= @model_name%>.update $scope.<%= @resource_name%>, (<%= @resource_name%>) ->
       $location.path "/<%= @resource_name%>s"
+
+<%= @controller%>EditCtrl.$inject = ['$scope', '$location', '$routeParams', '<%= @model_name%>'];
 
 root.<%= @controller%>IndexCtrl  = <%= @controller%>IndexCtrl
 root.<%= @controller%>CreateCtrl = <%= @controller%>CreateCtrl

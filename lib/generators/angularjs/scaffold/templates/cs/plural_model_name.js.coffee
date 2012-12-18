@@ -1,6 +1,6 @@
 root = global ? window
 
-angular.module(<%= '"' + "#{@plural_model_name}" + '"' %>, ["ngResource"]).factory <%= '"' + "#{@model_name}" + '"' %>, ($resource) ->
+angular.module(<%= '"' + "#{@plural_model_name}" + '"' %>, ["ngResource"]).factory <%= '"' + "#{@model_name}" + '"' %>, ['$resource',  ($resource) ->
   <%= "#{@model_name}" %> = $resource(<%= '"' + "/#{@plural_model_name}/:id" + '"'%>,
     id: "@id"
   ,
@@ -16,5 +16,6 @@ angular.module(<%= '"' + "#{@plural_model_name}" + '"' %>, ["ngResource"]).facto
     , cb
 
   <%= "#{@model_name}" %>
+]
 
 root.angular = angular
