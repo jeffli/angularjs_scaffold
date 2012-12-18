@@ -58,7 +58,7 @@ module Angularjs
         "//= require #{@plural_model_name} \n"
       if @language == 'coffeescript'
         insert_into_file "app/assets/javascripts/routes.coffee.erb",
-        ", \'#{@plural_model_name}\'", :before => "]"
+        ", \'#{@plural_model_name}\'", :after => "'ngCookies'"
         insert_into_file "app/assets/javascripts/routes.coffee.erb",
 %{when("/#{@plural_model_name}", 
     controller: #{@controller}IndexCtrl
