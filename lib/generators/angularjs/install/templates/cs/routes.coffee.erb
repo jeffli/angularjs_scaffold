@@ -7,7 +7,7 @@ root.CsrfCtrl = CsrfCtrl
 
 CsrfCtrl.$inject = ['$cookieStore'];
 
-theApp = angular.module("Client", ['ngCookies']).config(['$routeProvider', '$locationProvider',
+theApp = angular.module("<%= app_name %>Client", ['ngCookies']).config(['$routeProvider', '$locationProvider' , 
 ($routeProvider, $locationProvider) ->
   #$locationProvider.hashPrefix('');
   $locationProvider.html5Mode true

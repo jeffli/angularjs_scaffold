@@ -10,7 +10,7 @@ root = global ? window
       @<%= @resource_name%>.destroy ->
         $scope.<%= @resource_name%>s = _.without($scope.<%= @resource_name%>s, original)
 
-<%= @controller%>IndexCtrl.$inject = ['$scope', <%= @model_name%>];
+<%= @controller%>IndexCtrl.$inject = ['$scope', '<%= @model_name%>'];
 
 <%= @controller%>CreateCtrl = ($scope, $location, <%= @model_name%>) ->
   $scope.save = ->
