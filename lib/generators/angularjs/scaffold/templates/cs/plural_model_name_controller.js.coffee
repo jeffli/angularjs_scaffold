@@ -2,20 +2,20 @@
 root = global ? window
 
 <%= @controller%>IndexCtrl = ($scope, <%= @model_name%>) ->
-  $scope.<%= @resource_name%>s = <%= @model_name%>.query()
+  $scope.<%= @plural_model_name %> = <%= @model_name%>.query()
   $scope.destroy = ->
     dconfirm = confirm("Are you sure?")
     if dconfirm
       original = @<%= @resource_name%>
       @<%= @resource_name%>.destroy ->
-        $scope.<%= @resource_name%>s = _.without($scope.<%= @resource_name%>s, original)
+        $scope.<%= @plural_model_name %> = _.without($scope.<%= @plural_model_name %>, original)
 
 <%= @controller%>IndexCtrl.$inject = ['$scope', '<%= @model_name%>'];
 
 <%= @controller%>CreateCtrl = ($scope, $location, <%= @model_name%>) ->
   $scope.save = ->
     <%= @model_name%>.save $scope.<%= @resource_name%>, (<%= @resource_name%>) ->
-      $location.path "/<%= @resource_name%>s/#{<%= @resource_name%>.id}/edit"
+      $location.path "/<%= @plural_model_name %>/#{<%= @resource_name%>.id}/edit"
 
 <%= @controller%>CreateCtrl.$inject = ['$scope', '$location', '<%= @model_name%>'];
 
@@ -43,12 +43,12 @@ root = global ? window
     dconfirm = confirm("Are you sure?")
     if dconfirm
       $scope.<%= @resource_name%>.destroy ->
-        $location.path "/<%= @resource_name%>s"
+        $location.path "/<%= @plural_model_name %>"
 
 
   $scope.save = ->
     <%= @model_name%>.update $scope.<%= @resource_name%>, (<%= @resource_name%>) ->
-      $location.path "/<%= @resource_name%>s"
+      $location.path "/<%= @plural_model_name %>"
 
 <%= @controller%>EditCtrl.$inject = ['$scope', '$location', '$routeParams', '<%= @model_name%>'];
 
