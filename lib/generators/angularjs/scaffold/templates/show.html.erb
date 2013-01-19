@@ -1,9 +1,9 @@
 <h1><%= @model_name.titleize %></h1>
 
-<%- columns.each do |column| -%>
+<%- readable_attributes.each do |attr| -%>
 <p>
-  <b><%= column.name.humanize %></b><br>
-  {{<%=@resource_name%>.<%= column.name %>}}
+  <b><%= attr.name.humanize %></b><br>
+  {{<%=@resource_name%>.<%= attr.name %>}}
 </p>
 
 <%- end -%>
